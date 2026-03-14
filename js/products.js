@@ -23,9 +23,7 @@ html+=`
 <p class="card-text">$${p.price}</p>
 
 <button class="btn btn-primary" onclick="addCart('${p.title}',${p.price})">
-
 Agregar al carrito
-
 </button>
 
 </div>
@@ -41,3 +39,18 @@ Agregar al carrito
 document.getElementById("products").innerHTML=html
 
 })
+
+function addCart(name,price){
+
+let cart = JSON.parse(localStorage.getItem("cart")) || []
+
+cart.push({
+name:name,
+price:price
+})
+
+localStorage.setItem("cart", JSON.stringify(cart))
+
+alert("Producto agregado al carrito")
+
+}
