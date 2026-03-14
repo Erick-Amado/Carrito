@@ -1,32 +1,36 @@
-if(localStorage.getItem("auth") !== "true"){
+fetch("https://fakestoreapi.com/products")
 
-window.location="login.html"
+.then(res => res.json())
 
-}
-
-let products = [
-
-{name:"Laptop",price:900},
-{name:"Mouse",price:20},
-{name:"Teclado",price:50}
-
-]
+.then(products => {
 
 let html=""
 
 products.forEach(p=>{
 
-html += `
+html+=`
 <div>
-<h3>${p.name}</h3>
+
+<h3>${p.title}</h3>
+
+<img src="${p.image}" width="100">
+
 <p>$${p.price}</p>
-<button onclick="addCart('${p.name}',${p.price})">Agregar</button>
+
+<button onclick="addCart('${p.title}',${p.price})">
+
+Agregar al carrito
+
+</button>
+
 </div>
 `
 
 })
 
-document.getElementById("products").innerHTML = html
+document.getElementById("products").innerHTML=html
+
+})
 
 function addCart(name,price){
 
